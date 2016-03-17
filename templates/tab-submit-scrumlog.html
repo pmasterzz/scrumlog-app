@@ -1,0 +1,36 @@
+﻿<ion-view view-title="Invullen scrumlog">
+    <ion-content>
+        <form name="scrumForm">
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Wat heb je de vorige werkdag gedaan?</span>
+                    <textarea name="input1" placeholder="Wat heb je de vorige werkdag gedaan?" ng-model="scrumlog.input1" required></textarea>
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Welke problemen ben je tegengekomen?</span>
+                    <textarea name="input1" placeholder="Welke problemen ben je tegengekomen?" ng-model="scrumlog.input2" required></textarea>
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Wat ga je vandaag doen?</span>
+                    <textarea name="input1" placeholder="Wat ga je vandaag doen?" ng-model="scrumlog.input3" required></textarea>
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Waar heb je hulp/instructie bij nodig?</span>
+                    <textarea name="input1" placeholder="Waar heb je hulp/instructie bij nodig?" ng-model="scrumlog.input4"></textarea>
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Docent
+                    </div>
+                    <select ng-options="teacher.Teacher_ID as teacher.Firstname +' ' + teacher.Lastname for teacher in teachers" ng-model="scrumlog.teacher">
+                        <option value="">Select Account</option>
+                    </select>
+                </label>              
+                <button class="button button-block button-outline button-positive"
+                         ng-disabled="scrumForm.$invalid" ng-click="submitScrumlog(scrumlog)">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
