@@ -22,20 +22,23 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/services.js"></script>
+    <script src="js/constants.js"></script>
     <script src="js/services/auth-service.js"></script>
+    <script src="js/services/interceptor-service.js"></script>
     <script src="js/services/scrumlog-service.js"></script>
+    <script src="js/controllers/app-controller.js"></script>
     <script src="js/controllers/login-controller.js"></script>
     <script src="js/controllers/submit-scrumlog-controller.js"></script>
     <script src="js/controllers/scrumlog-controller.js"></script>
+    <script src="js/controllers/tab-controller.js"></script>
   </head>
-  <body ng-app="app">
+  <body ng-app="app" ng-controller="AppCtrl">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
     <ion-nav-bar class="bar-stable bar-positive">
       <ion-nav-back-button>
+          Terug
       </ion-nav-back-button>
     </ion-nav-bar>
     <!--

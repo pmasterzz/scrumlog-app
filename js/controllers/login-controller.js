@@ -1,20 +1,31 @@
 ﻿angular.module('app.login', [])
 
-.controller('LoginCtrl', function ($scope, AuthService, $window, $state) {
+.controller('LoginCtrl', function ($scope, AuthService, $window, $state, $ionicLoading,
+    $ionicPopup, USER_ROLES) {
     var vm = this;
-    vm.login = login;
-    
+    vm.login = login; 
         
 
     function login() {
-        AuthService.login(vm.user).success(function (data) {
-            if (data.Success === true) {
-                $state.go('tab.dash');
-                $window.localStorage.token = data.token;
-                AuthService.setUser(data.user);
-                
+        $scope.show();
+        AuthService.login(vm.user).then(function (data) {
+            AuthService.isAuthenticated = true;
+            AuthService.user = data.data.User;
+             
+            if (data.data.Userlevel === 'Student') {
+                AuthService.role = USER_ROLES.student;
+                $scope.student = true;
             }
-            console.log(data);
+            else {
+                AuthService.role = USER_ROLES.teacher;
+                $scope.student = false;
+            }
+            $window.localStorage.token = data.data.Token;
+            $scope.hide();
+            $state.go('tab.submit-scrumlog');
+        }, function (err) {
+            $scope.hide();
+            $scope.showAlert();
         })
     }
 
@@ -33,5 +44,26 @@
             })
         }
     }
-    checkToken();
+
+    function logout() {
+        $window.localStorage.token = '';
+        AuthService.setUser({});
+        $state.go('login');
+    }
+
+    $scope.show = function () {
+        $ionicLoading.show({
+            template: 'Laden...'
+        });
+    };
+    $scope.hide = function () {
+        $ionicLoading.hide();
+    }
+
+    $scope.showAlert = function () {
+        var alertPopup = $ionicPopup.alert({
+            title: 'Login',
+            template: 'Verkeerde gebruikersnaam/wachtwoord'
+        });
+    }
 })

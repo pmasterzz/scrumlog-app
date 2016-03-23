@@ -1,36 +1,42 @@
 ﻿angular.module('app.submitScrumlog', [])
 
-.controller('SubmitScrumlogCtrl', function ($scope, AuthService, ScrumlogService) {
-    var vm = this;
-    var user = AuthService.getUser();
+.controller('SubmitScrumlogCtrl', function ($scope, AuthService, ScrumlogService, $filter) {
     
-    console.log(user);
-    getAllTeachers();
-    
-   /* ScrumlogService.getAllTeachers().success(function (data) {
-        $scope.teachers = data.teachers;
-        console.log($scope.teachers);
-    })*/
-
-
-           
+    $scope.filledIn = false;
+    checkSubmittedScrumlog();    
+              
     function getAllTeachers() {
         ScrumlogService.getAllTeachers().success(function (data) {
-            $scope.teachers = data.teachers;
+            $scope.teachers = data;
             
         })
     }
+    function checkSubmittedScrumlog() {
+        var user = AuthService.getUser();
+        var today = $filter('date')(new Date(), 'yyyy-MM-dd');
+        if (user.Last_Submitted_Scrumlog === today) {
+            $scope.filledIn = true;
+        }
+        else {
+            getAllTeachers();
+        }
+    }
 
     $scope.submitScrumlog = function(scrumlog) {
-        console.log('in function');
         var student = AuthService.getUser();
+        
         var data = {
-            scrumlog: scrumlog,
-            student: student
+            input_Yesterday: scrumlog.input_Yesterday,
+            input_Problems: scrumlog.input_Problems,
+            input_Today: scrumlog.input_Today,
+            input_Help: scrumlog.input_Help,
+            input_Teacher: scrumlog.input_Teacher,
+            seating: student.Seating,
+            student_ID: student.Student_ID
         }
-        console.log(data);
+        $scope.filledIn = true;
         ScrumlogService.submit(data).success(function (data) {
-            console.log('submitted :)');
+            
         })
         alert('you posted it m9');
     }

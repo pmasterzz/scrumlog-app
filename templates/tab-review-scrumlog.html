@@ -1,10 +1,13 @@
 ﻿<ion-view view-title="Inzien scrumlog">
-    <ion-content>
-        <label class="item item-input">
-            <span class="input-label">Datum</span>
-            <input type="date" ng-model="vm.date">
-        </label>
-        <button class="button button-outline button-block button-positive" ng-click="vm.getScrumlog()">Bekijk scrumlog</button>
-        
-    </ion-content>
+    <div class="row row-center">
+        <ion-content>
+            <label class="item item-input">
+                <span class="input-label">Datum</span>
+                <input type="date" ng-model="vm.date">
+            </label>
+            <button class="button button-outline button-block button-positive"
+                     ng-click="vm.getScrumlog()">Bekijk scrumlog</button>
+
+        </ion-content>
+        </div>
 </ion-view>

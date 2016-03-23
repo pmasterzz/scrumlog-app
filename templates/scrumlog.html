@@ -1,4 +1,4 @@
-﻿<ion-view view-title="Scrumlog {{vm.date | date: 'dd-MM-yyyy'}}">
+﻿<ion-view view-title="Scrumlog {{vm.scrumDate | date: 'dd-MM-yyyy'}}">
     <ion-content> 
         <div class="list">
             <div class="padding">
@@ -6,25 +6,41 @@
                     Wat heb je de vorige werkdag gedaan?
                 </h4>
                 <p>
-                    {{vm.scrumlog}}
+                    {{vm.scrumlog.Input_Yesterday}}
                 </p>
             </div>
             <div class="padding">
                 <h4>
-                    Wat heb je de vorige werkdag gedaan?
+                    Welke problemen ben je tegengekomen?
                 </h4>
                 <p>
-                    {{vm.text}}
+                    {{vm.scrumlog.Input_Problems}}
                 </p>
             </div>
             <div class="padding">
                 <h4>
-                    Wat heb je de vorige werkdag gedaan?
+                    Wat ga je vandaag doen?
                 </h4>
                 <p>
-                    {{vm.text}}
+                    {{vm.scrumlog.Input_Today}}
                 </p>
-            </div>       
+            </div>     
+            <div class="padding">
+                <h4>
+                    Waar heb je hulp/instructie bij nodig?
+                </h4>
+                <p>
+                    {{vm.scrumlog.Input_Help}}
+                </p>
+            </div>  
+            <div class="padding">
+                <h4>
+                   Docent: 
+                </h4>
+                <p>
+                    {{vm.scrumlog.Radio_Help}}
+                </p>
+            </div> 
         </div>
     </ion-content>
 </ion-view>

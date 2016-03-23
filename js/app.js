@@ -5,8 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'starter.controllers', 'starter.services',
-    'app.login', 'app.scrumlog', 'app.authService', 'app.submitScrumlog', 'app.scrumlogService', 'angular-jwt'])
+angular.module('app', ['ionic', 'app.constants','app.controller',
+    'app.tab','app.login', 'app.scrumlog', 'app.authService', 'app.submitScrumlog',
+    'app.scrumlogService', 'app.interceptorService'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -23,9 +24,12 @@ angular.module('app', ['ionic', 'starter.controllers', 'starter.services',
     });
 })
 
-.value('api', 'http://localhost/Zee/index.php')
+.value('api', 'http://localhost/Oceaan/index.php')
+//.value('api', 'http://scrumlogtest.azurewebsites.net/scrumlog/index.php')
 
-.config(function($stateProvider, $urlRouterProvider, jwtInterceptorProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+
+    $httpProvider.interceptors.push('myInterceptor');
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -118,13 +122,18 @@ angular.module('app', ['ionic', 'starter.controllers', 'starter.services',
         }
     })
 
+    .state('tab.review-scrumlog-teacher', {
+        url: '/scrumlog-teacher',
+        views: {
+            'tab-review-scrumlog-teacher': {
+                templateUrl: 'templates/tab-review-teacher.html',
+                controller: 'ScrumlogCtrl',
+                controllerAs: 'vm'
+            }
+        }
+    })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
-
-  //set the authorization header for every request with the JWT-token. 
-  jwtInterceptorProvider.tokenGetter = function () {
-      return localStorage.getItem('token');
-  }
-  $httpProvider.interceptors.push('jwtInterceptor');
 
 });
