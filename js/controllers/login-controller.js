@@ -11,7 +11,7 @@
         AuthService.login(vm.user).then(function (data) {
             AuthService.isAuthenticated = true;
             AuthService.user = data.data.User;
-            console.log('hi');
+            
              
             if (data.data.Userlevel === 'Student') {
                 AuthService.role = USER_ROLES.student;
