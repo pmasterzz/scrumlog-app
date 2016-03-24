@@ -1,6 +1,6 @@
 ﻿angular.module('app.submitScrumlog', [])
 
-.controller('SubmitScrumlogCtrl', function ($scope, AuthService, ScrumlogService, $filter) {
+.controller('SubmitScrumlogCtrl', function ($scope, AuthService, ScrumlogService, $filter, MemeService) {
     
     $scope.filledIn = false;
     checkSubmittedScrumlog();    
@@ -13,9 +13,11 @@
     }
     function checkSubmittedScrumlog() {
         var user = AuthService.getUser();
+        console.log(user);
         var today = $filter('date')(new Date(), 'yyyy-MM-dd');
         if (user.Last_Submitted_Scrumlog === today) {
             $scope.filledIn = true;
+            getRandomMeme();
         }
         else {
             getAllTeachers();
@@ -36,9 +38,16 @@
         }
         $scope.filledIn = true;
         ScrumlogService.submit(data).success(function (data) {
-            
+            getRandomMeme();
         })
         alert('you posted it m9');
+    }
+
+    function getRandomMeme() {
+        MemeService.getRandomMeme().success(function (data) {
+            var index = Math.floor(Math.random() * data.data.length);
+            $scope.randomImg = data.data[index];
+        })
     }
     
 })

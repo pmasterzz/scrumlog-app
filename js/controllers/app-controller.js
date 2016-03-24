@@ -1,9 +1,11 @@
 ﻿angular.module('app.controller', [])
 
-.controller('AppCtrl', function ($scope, $window, AuthService, $state, USER_ROLES, $ionicPopup) {
+.controller('AppCtrl', function ($scope, $window, AuthService, $state, USER_ROLES,
+    $ionicPopup, $ionicLoading, $ionicHistory) {
     $scope.student = '';
     function checkToken() {
         if ($window.localStorage.token) {
+            showLoading();
             AuthService.checkToken().success(function (data) {
                 if (data.Success === true) {
                     AuthService.setUser(data.User);
@@ -19,6 +21,7 @@
                     }
                     $scope.student = true;
                     $state.go('tab.submit-scrumlog');
+                    hideLoading();
                 }
             })
         }
@@ -32,6 +35,7 @@
 
         })
         $window.localStorage.clear();
+        $ionicHistory.clearHistory();
         $state.go('login');
     }
     $scope.showConfirm = function () {
@@ -46,4 +50,12 @@
         });
     };
     checkToken();
+    function showLoading () {
+        $ionicLoading.show({
+            template: 'Laden...'
+        });
+    };
+    function hideLoading() {
+        $ionicLoading.hide();
+    }
 })

@@ -3,7 +3,7 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-show="student">
+<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-show="true">
 
     <!-- Submit-scrumlog Tab-->
     <ion-tab title="Invullen scrumlog" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose" ui-sref="tab.submit-scrumlog">
@@ -20,7 +20,7 @@ navigation history that also transitions its views in and out.
 
 <!--Teacher tabs-->
 </ion-tabs>
-<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-hide="student">
+<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-hide="true">
     <!-- Reviewt-scrumlog Tab-->
     <ion-tab title="Inzien scrumlog" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" ui-sref="tab.review-scrumlog-teacher">
         <ion-nav-view name="tab-review-scrumlog-teacher"></ion-nav-view>

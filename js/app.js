@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'app.constants','app.controller',
     'app.tab','app.login', 'app.scrumlog', 'app.authService', 'app.submitScrumlog',
-    'app.scrumlogService', 'app.interceptorService'])
+    'app.scrumlogService', 'app.interceptorService', 'app.memeService'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -24,12 +24,13 @@ angular.module('app', ['ionic', 'app.constants','app.controller',
     });
 })
 
-.value('api', 'http://localhost/Oceaan/index.php')
+.value('api', 'http://localhost/scrumlog-api/index.php')
 //.value('api', 'http://scrumlogtest.azurewebsites.net/scrumlog/index.php')
 
-.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
 
     $httpProvider.interceptors.push('myInterceptor');
+    //$ionicConfigProvider.views.maxCache(0);
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
