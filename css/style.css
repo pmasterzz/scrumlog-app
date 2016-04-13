@@ -15,3 +15,8 @@
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
     color: #4b08a1 !important;
 }*/
+
+.completed a{
+     background-color: #33cd5f !important;
+     color: white;
+}

@@ -1,0 +1,26 @@
+<ion-view view-title="To do">
+<ion-content>
+    <ion-refresher
+     pulling-text="Laad todo's...'"
+     on-refresh="getAllComments()" 
+     show-reorder="true">
+    </ion-refresher>
+	<ion-list can-swipe="canSwipe">
+        <ion-item ng-repeat="t in todos track by $index "
+           ui-sref="tab-teacher.todo-detail({todo: t})" ng-class="{completed: t.Completed == 1}">
+            {{t.Firstname}} {{t.Infix}} {{t.Lastname}}       
+            <ion-option-button ng-if="t.Completed == 0||t.completed == null" class="button-balanced" ng-click="complete(t, $index)">
+                Voltooid
+            </ion-option-button>
+            <ion-option-button ng-show="t.Completed === 1" class="button-assertive" ng-click="complete(t)">
+                Onvoltooi
+            </ion-option-button>
+            <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(t, $fromIndex, $toIndex)">
+            </ion-reorder-button>
+        </ion-item>
+        <div class="card" ng-if="todos.length == 0">
+            <div class="item item-text-wrap">Er zijn geen todo's gevonden</div>
+        </div>
+    </ion-list>
+</ion-content>
+</ion-view>

@@ -1,29 +1,58 @@
 ﻿angular.module('app.scrumlog', [])
 
 .controller('ScrumlogCtrl', function ($scope, AuthService, ScrumlogService, $filter, $state,
-    $ionicLoading, $ionicPopup) {
-    var vm = this;
-    vm.getScrumlog = getScrumlog;
-    vm.date = new Date();
-    vm.scrumlog = ScrumlogService.getCurrentScrumlog();
+    $ionicLoading, $ionicPopup, USER_ROLES) {
     
-    function getScrumlog() {
-        var date = $filter('date')(vm.date  , "yyyy-MM-dd");        
-        var student = AuthService.getUser();
-        vm.scrumDate = date;
+    $scope.selectedDate = new Date();
+    $scope.currentYear = new Date().getFullYear();
+    $scope.cycles = [];
+    $scope.scrumlog = {};
+    
+    
+    $scope.filter = {
+        year: 'undefined'
+    };
+    $scope.tables = [1, 2, 3, 4, 5, 6, 7];
+    //vm.scrumlog = ScrumlogService.getCurrentScrumlog();
+
+    if (AuthService.role === USER_ROLES.teacher)
+        getAllStudents();
+    
+    $scope.getScrumlogStudent = function (selectedDate) {
         $scope.show();
-        ScrumlogService.getScrumlog(date, student.Student_ID).success(function (data) {
+        var filter = {};
+        filter.date = $filter('date')(selectedDate, "yyyy-MM-dd");
+        var student = AuthService.getUser();
+        filter.student_ID = student.Student_ID;
+        ScrumlogService.getScrumlog(filter).success(function (data) {
             if (data.Success !== false) {
-                vm.scrumlog = data[0];
-                ScrumlogService.setCurrentScrumlog(vm.scrumlog);
+                $scope.scrumlog = data[0];
                 $scope.hide();
-                $state.go('tab.scrumlog');
+                $state.go('tab.scrumlog', {scrumlog: $scope.scrumlog});
             }
             else {
                 $scope.hide();
                 $scope.showAlert();
             }
         })
+
+    }
+
+    $scope.getScrumlogTeacher = function (filter, date) {
+        $scope.show();
+        filter["date"] = $filter('date')(date, "yyyy-MM-dd");
+        ScrumlogService.getScrumlog(filter).success(function (data) {
+            if(data.Success !== false)
+            {
+                $scope.hide();
+                $state.go('tab-teacher.scrumlog-list', { scrumlogList: JSON.stringify(data) });
+            }
+            else {
+                $scope.hide();
+                $scope.showAlert();
+            }
+                    
+        });
 
     }
 
@@ -35,12 +64,18 @@
     $scope.hide = function () {
         $ionicLoading.hide();
     }
-
     $scope.showAlert = function () {
         var alertPopup = $ionicPopup.alert({
             title: 'Scrumlog',
             template: 'Er is geen scrumlog gevonden.'
         });
     }
+    function getAllStudents() {
+        ScrumlogService.getAllStudents().success(function (data) {
+            $scope.students = data;
+        })
+    }
+
+    //$scope.getAllCycles();
 
 })

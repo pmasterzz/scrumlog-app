@@ -23,6 +23,9 @@
                     $state.go('tab.submit-scrumlog');
                     hideLoading();
                 }
+                else {
+                    hideLoading();
+                }
             })
         }
     }
@@ -35,7 +38,8 @@
 
         })
         $window.localStorage.clear();
-        $ionicHistory.clearHistory();
+        //$ionicHistory.clearHistory();
+        //$ionicHistory.clearCache();
         $state.go('login');
     }
     $scope.showConfirm = function () {
@@ -49,7 +53,7 @@
             }, { text: 'Annuleren', type: 'button-assertive' }]
         });
     };
-    checkToken();
+    //checkToken();
     function showLoading () {
         $ionicLoading.show({
             template: 'Laden...'

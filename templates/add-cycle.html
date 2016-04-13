@@ -1,0 +1,27 @@
+﻿<ion-view cache-view="false">
+    <ion-content>
+        <div class="list">
+            <form name="cycleForm" novalidate>
+                <label class="item item-input">
+                    <span class="input-label">Cyclus nummer</span>
+                    <input type="tel" name="number" ng-model="cycle.Number" required>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Begin datum</span>
+                    <input type="date" name="start_date" ng-model="cycle.Start_Date">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Begin datum</span>
+                    <input type="date" name="end_date" ng-model="cycle.End_Date">
+                </label>
+
+                <button class="button button-block button-positive" ng-disabled="cycleForm.$invalid || cycle.Start_Date >= cycle.End_Date"
+                         ng-click="updateOrAdd()">
+                    {{buttonText}}
+                </button>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,21 @@
+<ion-view view-title="Commentaar">
+	<ion-content>
+		<form name="commentForm">
+			<label class="item item-input item-floating-label">
+	            <span class="input-label">Commentaar</span>
+	            <textarea placeholder="Commentaar" name="comment" ng-model="comment.text" required>
+	            </textarea>
+	        </label>
+	        <label class="item item-input item-select">
+	            <div class="input-label">
+	                Docent
+	            </div>
+	            <select ng-options="teacher.Teacher_ID as teacher.Firstname + ' ' + teacher.Lastname for teacher in teachers"
+	             ng-model="comment.teacher" name="teacher" required>
+	            </select>
+	        </label>
+	        <button class="button button-block button-positive" ng-click="submitComment()" ng-disabled="commentForm.$error.required">	Opslaan
+	        </button>
+	    </form>
+	</ion-content>
+</ion-view>	

@@ -1,7 +1,7 @@
 ﻿angular.module('app.submitScrumlog', [])
 
-.controller('SubmitScrumlogCtrl', function ($scope, AuthService, ScrumlogService, $filter, MemeService) {
-    
+.controller('SubmitScrumlogCtrl', function ($scope, AuthService, ScrumlogService,
+    $filter, MemeService, $ionicHistory) {
     $scope.filledIn = false;
     checkSubmittedScrumlog();    
               
@@ -13,7 +13,6 @@
     }
     function checkSubmittedScrumlog() {
         var user = AuthService.getUser();
-        console.log(user);
         var today = $filter('date')(new Date(), 'yyyy-MM-dd');
         if (user.Last_Submitted_Scrumlog === today) {
             $scope.filledIn = true;
@@ -26,7 +25,7 @@
 
     $scope.submitScrumlog = function(scrumlog) {
         var student = AuthService.getUser();
-        
+
         var data = {
             input_Yesterday: scrumlog.input_Yesterday,
             input_Problems: scrumlog.input_Problems,
@@ -36,6 +35,15 @@
             seating: student.Seating,
             student_ID: student.Student_ID
         }
+        
+        if (data.input_Help === undefined) {
+            data.input_Help = '-';
+        }
+        if (data.input_Teacher === undefined)
+            data.input_Teacher = '-';
+        if (data.input_Problems === undefined)
+            data.input_Problems = '-';
+
         $scope.filledIn = true;
         ScrumlogService.submit(data).success(function (data) {
             getRandomMeme();

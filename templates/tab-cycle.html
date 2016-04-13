@@ -1,0 +1,13 @@
+﻿<ion-view view-title="Cyclus">
+    <ion-content>
+        <button class="button button-block button-positive" ui-sref="tab-teacher.add-cycle">
+            Cyclus toevoegen
+        </button>
+        <ion-list can-swipe="true">
+            <ion-item ng-repeat="c in cycles track by $index | orderBy: 'Number'" ui-sref="tab-teacher.add-cycle({cycle: cycles[$index], index: $index})">
+                {{c.Number}} | {{c.Start_Date}} - {{c.End_Date | date: 'dd-MM-yyyy'}}
+                <ion-option-button class="button-assertive" ng-click="showConfirm(c.Cycle_ID, $index)">Delete</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

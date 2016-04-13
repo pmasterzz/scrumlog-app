@@ -1,0 +1,25 @@
+﻿<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+    <!-- Reviewt-scrumlog Tab-->
+    <ion-tab title="Inzien scrumlog" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper"
+              ui-sref="tab.review-scrumlog-teacher">
+        <ion-nav-view name="tab-review-scrumlog-teacher"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Wijzigen tafels" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose"
+             ui-sref="tab-teacher.tab-table">
+        <ion-nav-view name="tab-table"></ion-nav-view>
+    </ion-tab>
+
+    <!--Cycle tab-->
+    <ion-tab title="Cyclus" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" ui-sref="tab-teacher.cycle">
+        <ion-nav-view name="tab-cycle"></ion-nav-view>
+    </ion-tab>
+
+            <!-- Todo Tab-->
+    <ion-tab title="Todo" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" ui-sref="tab-teacher.todo">
+        <ion-nav-view name="tab-todo"></ion-nav-view>
+    </ion-tab>
+
+    <!--Logout tab-->
+    <ion-tab title="Uitloggen" icon-off="ion-log-out" icon-on="ion-log-out" ng-click="showConfirm()">
+    </ion-tab>
+</ion-tabs>

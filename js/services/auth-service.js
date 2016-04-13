@@ -10,8 +10,11 @@
         checkToken: checkToken,
         logout: logout,
         isAuthenticated : false,
-        role : ''
-}
+        role : '',
+        isAuthorized: isAuthorized
+    }
+
+
     return service;
 
     function setUser(user) {
@@ -58,5 +61,12 @@
             },
             data: data
         })
+    }
+
+    function isAuthorized(authorizedRoles) {
+        if (!angular.isArray(authorizedRoles)) {
+            authorizedRoles = [authorizedRoles]
+        }
+        return (this.isAuthenticated && authorizedRoles.indexOf(this.role) !== -1);
     }
 })

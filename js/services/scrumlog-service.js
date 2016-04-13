@@ -8,7 +8,12 @@
         getScrumlog: getScrumlog,
         currentScrumlog: {},
         getCurrentScrumlog: getCurrentScrumlog,
-        setCurrentScrumlog: setCurrentScrumlog
+        setCurrentScrumlog: setCurrentScrumlog,
+        getAllStudents: getAllStudents,
+        getAllCycles: getAllCycles,
+        submitComment: submitComment,
+        getAllTodos: getAllTodos,
+        completeTodo: completeTodo
     }
     return service;
 
@@ -41,9 +46,55 @@
         return $http.get(api + '/api/getTeachers');
     }
 
-    function getScrumlog(date, student_ID) {
-        return $http.get(api + '/api/scrumlog?date=' + date + '&student_ID=' + student_ID);
+    function getScrumlog(filter) {
+        console.log(filter);
+        return $http.get(api + '/api/scrumlog?date=' + filter.date + '&student_ID=' + filter.student_ID + '&year=' + filter.year + '&cycle_ID=' + filter.cycle_ID + '&seating=' + filter.seating);
     }
 
+    function getAllStudents() {
+        return $http.get(api + '/api/getAllStudents');
+    }
+
+    function getAllCycles(){
+        return $http.get(api + '/api/getAllCycles');
+    }
+
+    function submitComment(data){
+        return $http({
+            method: 'POST',
+            url: api + '/api/submitComment',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function (obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: data
+        })
+    }
+
+    function getAllTodos(data){
+        return $http.get(api + '/api/getAllTodos?teacher_ID=' + data);
+    }
+    
+    function completeTodo(data){
+        return $http({
+            method: 'PUT',
+            url: api + '/api/completeTodo',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function (obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: data
+        })
+    }
 
 })

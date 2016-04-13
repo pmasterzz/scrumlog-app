@@ -1,6 +1,44 @@
-﻿<ion-view view-title="Scrumlog inzien">
-    <ion-content>
-        
-        {{student}}
-    </ion-content>
+﻿<ion-view view-title="Inzien scrumlog">
+    <div class="row row-center">
+        <ion-content>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Datum</span>
+                    <input type="date" ng-model="selectedDate">
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Jaar
+                    </div>
+                    <select ng-model="filter.year">
+                        <option value="undefined">n.v.t.</option>
+                        <option>{{currentYear}}</option>
+                        <option>{{currentYear - 1}}</option>
+                        <option>{{currentYear - 2}}</option>
+                        <option>{{currentYear - 3}}</option>
+                        <option>{{currentYear - 4}}</option>
+                    </select>
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Tafel
+                    </div>
+                    <select ng-model="filter.seating" ng-options="table for table in tables">
+                        <option value="">n.v.t.</option>
+                    </select>
+                </label>
+                <!--<label class="item item-input item-select">
+                    <div class="input-label">
+                        Cyclus
+                    </div>
+                    <select ng-model="filter.cycle_ID" ng-options="cycle.Cycle_ID as cycle.Start_Date +' t/m ' + cycle.End_Date for cycle in cycles">
+                    </select>
+                </label>-->
+                <button class="button button-outline button-block button-positive"
+                        ng-click="getScrumlogTeacher(filter, selectedDate)">
+                    Bekijk scrumlog
+                </button>
+            </div>
+        </ion-content>
+    </div>
 </ion-view>

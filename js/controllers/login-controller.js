@@ -1,29 +1,32 @@
 ﻿angular.module('app.login', [])
 
 .controller('LoginCtrl', function ($scope, AuthService, $window, $state, $ionicLoading,
-    $ionicPopup, USER_ROLES) {
+    $ionicPopup, USER_ROLES, $ionicHistory) {
     var vm = this;
-    vm.login = login; 
+    vm.login = login;
+    vm.clear = clear;
+    $ionicHistory.clearHistory();
+    $ionicHistory.clearCache();
         
 
     function login() {
         $scope.show();
         AuthService.login(vm.user).then(function (data) {
             AuthService.isAuthenticated = true;
-            AuthService.user = data.data.User;
+            AuthService.setUser(data.data.User);
             
-             
+            $window.localStorage.token = data.data.Token;          
             if (data.data.Userlevel === 'Student') {
                 AuthService.role = USER_ROLES.student;
-                $scope.student = true;
+                $state.go('tab.submit-scrumlog');
             }
             else {
                 AuthService.role = USER_ROLES.teacher;
-                $scope.student = false;
+                $state.go('tab-teacher.review-scrumlog-teacher');
             }
-            $window.localStorage.token = data.data.Token;
+            
             $scope.hide();
-            $state.go('tab.submit-scrumlog');
+            
         }, function (err) {
             $scope.hide();
             $scope.showAlert();
@@ -36,21 +39,18 @@
                 token: $window.localStorage.token
             }
             AuthService.checkToken(data).success(function (data) {
-                if (data.success) {
+                if (data.Success === true) {
                     AuthService.setUser(data.user);
-                    console.log('set');
-                    $state.go('tab.dash');
-                    
+                    $state.go('tab.submit-scrumlog');
                 }
             })
         }
     }
 
-    function logout() {
-        $window.localStorage.token = '';
-        AuthService.setUser({});
-        $state.go('login');
+    function clear() {
+        $window.localStorage.clear();
     }
+
 
     $scope.show = function () {
         $ionicLoading.show({
@@ -67,4 +67,11 @@
             template: 'Verkeerde gebruikersnaam/wachtwoord'
         });
     }
+
+    $scope.$on('$ionicView.beforeLeave', function (event, viewData) {
+        $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            disableBack: true
+        });
+    })
 })

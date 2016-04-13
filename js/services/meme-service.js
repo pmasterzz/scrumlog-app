@@ -14,7 +14,8 @@
             url: 'https://api.imgur.com/3/g/memes/top',
             headers: {
                 'Authorization': 'Client-ID c0372e23ad49467'
-            }
+            },
+            cache: true
         });
     }
 })

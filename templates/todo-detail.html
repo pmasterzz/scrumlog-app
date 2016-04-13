@@ -1,0 +1,10 @@
+<ion-view view-title="todo">
+    <ion-content>
+        <h4>Student</h4> {{todo.Firstname}} {{todo.Infix}} {{todo.Lastname}}
+        <h4>Vraag</h4> {{todo.Input_Help}}
+        <h4>Commentaar</h4> {{todo.Remark}}
+        <button class="button button-positive button-block" ui-sref="tab-teacher.comment({scrumlog: todo})">
+            Pass to other teacher
+        </button>
+    </ion-content>
+</ion-view>
