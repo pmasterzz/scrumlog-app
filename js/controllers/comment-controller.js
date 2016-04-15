@@ -4,15 +4,14 @@ angular.module('app.comment', [])
 
 	//getAllTeachers();
 	$scope.comment = {};
-    console.log($stateParams);
 	$scope.submitComment = function(){
 		var data = {
-			text: $scope.comment.text,
 			teacher: $scope.comment.teacher,
-			scrumlog: $stateParams.scrumlog.Scrumlog_ID
+            text: $stateParams.comment,
+			scrumlog: $stateParams.id
 		};
         ScrumlogService.submitComment(data);
-        $state.go('tab-teacher.scrumlog-detail', {scrumlog: JSON.stringify($stateParams.scrumlog)});
+        $state.go('tab-teacher.todo');
 	}
 
 	function getAllTeachers(){

@@ -47,7 +47,7 @@ angular.module('app', ['ionic',
     });
 })
 
-.value('api', 'http://localhost/scrumlog-api/index.php')
+.value('api', 'http://localhost/scrumlog-web/api/api.php')
 //.value('api', 'http://scrumlogtest.azurewebsites.net/scrumlog/index.php')
 .value('tables', [1, 2, 3, 4, 5, 6, 7])
 
@@ -278,7 +278,8 @@ angular.module('app', ['ionic',
           authorizedRoles: [USER_ROLES.teacher]
       },
       params: {
-        scrumlog: null
+        comment: null,
+        id: null
       }
     })
 

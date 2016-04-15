@@ -1,6 +1,6 @@
 angular.module('app.todo', [])
 
-.controller('TodoCtrl', function ($scope, $state, $ionicPopup, ScrumlogService, AuthService, $ionicListDelegate) {
+.controller('TodoCtrl', function ($scope, $state, $ionicPopup, ScrumlogService, AuthService, $ionicListDelegate, $ionicNavBarDelegate) {
     $scope.canSwipe = true;
     
     $scope.complete = function(todo, index){
@@ -11,6 +11,7 @@ angular.module('app.todo', [])
             scrumlog_ID: todo.Scrumlog_ID
         }
         ScrumlogService.completeTodo(data);
+        $state.go('tab-teacher.todo');
     }
 	
 	
@@ -23,4 +24,6 @@ angular.module('app.todo', [])
         })
 	}
     $scope.getAllComments();
+    
+    $ionicNavBarDelegate.showBackButton(false);
 })

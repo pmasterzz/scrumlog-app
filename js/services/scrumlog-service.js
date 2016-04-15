@@ -43,7 +43,7 @@
     }
 
     function getAllTeachers() {
-        return $http.get(api + '/api/getTeachers');
+        return $http.get(api + '/api/getAllTeachers');
     }
 
     function getScrumlog(filter) {
