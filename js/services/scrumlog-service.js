@@ -47,7 +47,6 @@
     }
 
     function getScrumlog(filter) {
-        console.log(filter);
         return $http.get(api + '/api/scrumlog?date=' + filter.date + '&student_ID=' + filter.student_ID + '&year=' + filter.year + '&cycle_ID=' + filter.cycle_ID + '&seating=' + filter.seating);
     }
 

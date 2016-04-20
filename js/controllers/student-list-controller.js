@@ -1,7 +1,7 @@
 ﻿angular.module('app.student-list', [])
 
 .controller('StudentListCtrl', function ($scope, $state,
-    $ionicLoading, $ionicPopup, $stateParams, TableService) {
+    $ionicLoading, $ionicPopup, $stateParams, TableService, $ionicNavBarDelegate) {
 
     $scope.studentList = [];
 
@@ -37,4 +37,6 @@
         })
     }
     getAllAvailableStudents();
+    
+    $ionicNavBarDelegate.showBackButton(true);
 })

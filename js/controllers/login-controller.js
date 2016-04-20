@@ -3,10 +3,15 @@
 .controller('LoginCtrl', function ($scope, AuthService, $window, $state, $ionicLoading,
     $ionicPopup, USER_ROLES, $ionicHistory) {
     var vm = this;
+    
+    checkToken();
+    
+    
     vm.login = login;
     vm.clear = clear;
     $ionicHistory.clearHistory();
     $ionicHistory.clearCache();
+        
         
 
     function login() {
@@ -34,14 +39,25 @@
     }
 
     function checkToken() {
+        
         if ($window.localStorage.token) {
+            
             var data = {
                 token: $window.localStorage.token
             }
             AuthService.checkToken(data).success(function (data) {
                 if (data.Success === true) {
-                    AuthService.setUser(data.user);
-                    $state.go('tab.submit-scrumlog');
+                    console.log(data);
+                    AuthService.setUser(data.User);
+                    if(data.Userlevel === 'Student'){
+                        AuthService.role = USER_ROLES.student;
+                        $state.go('tab.submit-scrumlog');
+                    }
+                    else{
+                        console.log('why?');
+                        AuthService.role = USER_ROLES.teacher;
+                        $state.go('tab-teacher.review-scrumlog-teacher');
+                    }
                 }
             })
         }
@@ -74,4 +90,5 @@
             disableBack: true
         });
     })
+    
 })

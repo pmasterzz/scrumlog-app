@@ -36,7 +36,6 @@
         var end = new Date($scope.cycle.End_Date);
         end = $filter('date')(end, "yyyy-MM-dd");
         
-        console.log(start + ' -----' + end);
         
         $scope.cycle.Start_Date = start;   
         

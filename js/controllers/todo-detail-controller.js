@@ -2,7 +2,7 @@ angular.module('app.todo-detail', [])
 
 .controller('TodoDetailCtrl', function ($scope, $state, $ionicPopup, ScrumlogService, $stateParams) {
     $scope.todo = $stateParams.todo;
-    $scope.comment={text: ""};
+    $scope.comment={text: $scope.todo.Remark};
     
     $scope.complete = function(todo){
         var data = {

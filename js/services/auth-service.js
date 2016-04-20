@@ -18,7 +18,9 @@
     return service;
 
     function setUser(user) {
+       this.isAuthenticated = true;
        this.user = user;
+       
     }
     function getUser() {    
         return this.user;

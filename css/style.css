@@ -20,3 +20,17 @@
      background-color: #33cd5f !important;
      color: white;
 }
+
+.login{
+    /*background-image: url('../img/bg3.jpg');*/
+}
+
+.login-form{
+    /*margin: 5% 5% 0 5%;*/
+    background-color: #FFF;
+}
+
+ion-content{
+    margin: 10% 5% 0 5%;
+    /*background-image: url('../img/rainbow.jpg');*/
+}
