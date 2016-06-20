@@ -3,8 +3,8 @@
         <div class="list">
             <form name="cycleForm" novalidate>
                 <label class="item item-input">
-                    <span class="input-label">Cyclus nummer</span>
-                    <input type="tel" name="number" ng-model="cycle.Number" required>
+                    <span class="input-label">Beschrijving</span>
+                    <input type="text" name="number" ng-model="cycle.Description" required>
                 </label>
 
                 <label class="item item-input">
@@ -17,7 +17,7 @@
                     <input type="date" name="end_date" ng-model="cycle.End_Date">
                 </label>
 
-                <button class="button button-block button-positive" ng-disabled="cycleForm.$invalid || cycle.Start_Date >= cycle.End_Date"
+                <button class="button button-block button-outline button-energized" ng-disabled="cycleForm.$invalid || cycle.Start_Date >= cycle.End_Date"
                          ng-click="updateOrAdd()">
                     {{buttonText}}
                 </button>

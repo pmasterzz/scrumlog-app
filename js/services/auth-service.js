@@ -11,7 +11,8 @@
         logout: logout,
         isAuthenticated : false,
         role : '',
-        isAuthorized: isAuthorized
+        isAuthorized: isAuthorized,
+        setScrumlog:setScrumlog
     }
 
 
@@ -22,6 +23,11 @@
        this.user = user;
        
     }
+
+    function setScrumlog(date){
+        this.user.Last_Submitted_Scrumlog = new Date;
+    }
+
     function getUser() {    
         return this.user;
     }

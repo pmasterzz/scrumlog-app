@@ -1,25 +1,25 @@
 ﻿<ion-view view-title="Wijzigen tafels">
-    <ion-content>
-        <div class="row">
-            
-            <div class="col">
-                <label class="item item-input item-select">
+    <ion-content class="rainbow">
+        <div class="app-container">
+            <div class="row">
+                <div class="col">
+                    <label class="item item-input item-select app-input">
                     <div class="input-label">
                         Tafel
                     </div>
                     <select ng-model="table" ng-options="table for table in tables"></select>
                 </label>
-            </div>
-            <div class="col-50">
-                <button class="button button-positive button-block"
-                         ui-sref="tab-teacher.student-list({table: table})">
+                </div>
+                <div class="col-50">
+                    <button class="button button-energized button-block" ui-sref="tab-teacher.student-list({table: table})">
                     Wijzig tafel
                 </button>
+                </div>
             </div>
-        </div>
-        
-        <button class="button button-assertive button-block" ng-click="clearAllTables()">
+
+            <button class="button button-assertive button-block" ng-click="clearAllTables()">
             Leeg alle tafels
         </button>
+        </div>
     </ion-content>
 </ion-view>

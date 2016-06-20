@@ -1,11 +1,11 @@
 ﻿<ion-view view-title="scrumlog lijst">
-    <ion-content>
-        <div class="item-input-inset">
+    <ion-content class="">
+        <div class="item-input-inset search">
             <label class="item-input-wrapper">
                 <i class="icon ion-ios-search placeholder-icon"></i>
-                <input type="search" placeholder="Search" ng-model="query"/>
+                <input type="search" placeholder="Zoeken" ng-model="query"/>
             </label>
-            <button class="button button-clear" ng-click="query = ''">Cancel</button>
+            <button class="button button-clear" ng-click="query = ''">Annuleren</button>
         </div>
         <ion-list>
             <ion-item ng-repeat="s in scrumlogList | filter: query track by $index "

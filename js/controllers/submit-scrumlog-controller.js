@@ -14,7 +14,8 @@
     function checkSubmittedScrumlog() {
         var user = AuthService.getUser();
         var today = $filter('date')(new Date(), 'yyyy-MM-dd');
-        if (user.Last_Submitted_Scrumlog === today) {
+        var latest_scrum = $filter('date')(user.Last_Submitted_Scrumlog, 'yyyy-MM-dd');
+        if (latest_scrum === today) {
             $scope.filledIn = true;
             getRandomMeme();
         }
@@ -45,10 +46,13 @@
             data.input_Problems = '-';
 
         $scope.filledIn = true;
+        AuthService.setScrumlog();
+        var user = AuthService.getUser();
+        console.log(user);
         ScrumlogService.submit(data).success(function (data) {
             getRandomMeme();
         })
-        alert('you posted it m9');
+        
     }
 
     function getRandomMeme() {
@@ -57,5 +61,10 @@
             $scope.randomImg = data.data[index];
         })
     }
+
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+           checkSubmittedScrumlog();
+            
+        })
     
 })

@@ -1,51 +1,52 @@
-﻿<ion-view view-title="Invullen scrumlog">
-    <ion-content>
-        <form name="scrumForm" ng-hide="filledIn">
-            <div class="list">
-                <label class="item item-input item-floating-label">
+﻿<ion-view view-title="Invullen scrumlog" cache-view="false">
+    <ion-content class="submit-scrumlog-page rainbow">
+        <div class="app-container">
+            <form name="scrumForm" ng-if="!filledIn">
+                <div class="list">
+                    <label class="item item-input item-floating-label app-input">
                     <span class="input-label">Wat heb je de vorige werkdag gedaan?</span>
                     <textarea name="input1" placeholder="Wat heb je de vorige werkdag gedaan?" ng-model="scrumlog.input_Yesterday" required></textarea>
                 </label>
-                <label class="item item-input item-floating-label">
+                    <label class="item item-input item-floating-label app-input">
                     <span class="input-label">Welke problemen ben je tegengekomen?</span>
                     <textarea name="input1" placeholder="Welke problemen ben je tegengekomen?" ng-model="scrumlog.input_Problems" required></textarea>
                 </label>
-                <label class="item item-input item-floating-label">
+                    <label class="item item-input item-floating-label app-input">
                     <span class="input-label">Wat ga je vandaag doen?</span>
                     <textarea name="input1" placeholder="Wat ga je vandaag doen?" ng-model="scrumlog.input_Today" required></textarea>
                 </label>
-                <label class="item item-input item-floating-label">
+                    <label class="item item-input item-floating-label app-input">
                     <span class="input-label">Waar heb je hulp/instructie bij nodig?</span>
                     <textarea name="input1" placeholder="Waar heb je hulp/instructie bij nodig?" ng-model="scrumlog.input_Help"></textarea>
                 </label>
-                <label class="item item-input item-select">
+                    <label class="item item-input item-select app-input">
                     <div class="input-label">
                         Docent
                     </div>
                     <select ng-options="teacher.Teacher_ID as teacher.Firstname +' ' + teacher.Lastname for teacher in teachers" ng-model="scrumlog.input_Teacher">
                         <option value="">N.V.T.</option>
                     </select>
-                </label>              
-                <button class="button button-block button-outline button-positive"
-                         ng-disabled="scrumForm.$invalid" ng-click="submitScrumlog(scrumlog)">
+                </label>
+                    <button class="button button-block button-energized" ng-disabled="scrumForm.$invalid" ng-click="submitScrumlog(scrumlog)">
                     Submit
                 </button>
-            </div>
-        </form>
+                </div>
+            </form>
+        </div>
 
-        <div class="card" ng-show="filledIn">
+        <div class="card" ng-if="filledIn">
             <div class="item item-text-wrap">
                 Je hebt je scrumlog voor vandaag ingevuld!
             </div>
 
-            <div class="list card">
+            <!--<div class="list card">
                 <div class="item item-divider">
                     <h2>{{randomImg.title}}</h2>
                 </div>
                 <div class="item item-image">
                     <img ng-src="{{randomImg.link}}" width="100%" />
                 </div>
-            </div>
+            </div>-->
 
 
         </div>

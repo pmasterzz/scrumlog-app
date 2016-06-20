@@ -1,17 +1,20 @@
-﻿<ion-view view-title="Login" cache-view="false">
-    <ion-content class="login">
-        <form name="loginForm" class="login-form" novalidate>
+﻿<ion-view view-title="RijnIJssel Scrumlog" cache-view="false" class="login">
+    <ion-content>
+        <form name="loginForm" class="login-form app-container" novalidate>
             <div class="list">
-                <label class="item item-input item-floating-label">
+                <label class="item item-input item-stacked-label app-input">
                     <span class="input-label">Gebruikersnaam</span>
-                    <input type="text" name="username" placeholder="Gebruikersnaam" ng-model="vm.user.username" required>
+                    <input type="text" name="username" placeholder="Gebruikersnaam"
+                     ng-model="vm.user.username" autocomplete="off" autocorrect="off" 
+                     autocapitalize="off" spellcheck="false" required>
                 </label>
-                <label class="item item-input item-floating-label">
+                <label class="item item-input item-stacked-label app-input">
                     <span class="input-label">Wachtwoord</span>
-                    <input type="password" name="password" placeholder="Wachtwoord" ng-model="vm.user.password" required>
+                    <input type="password" name="password" placeholder="Wachtwoord"
+                     ng-model="vm.user.password" autocomplete="off" autocorrect="off"
+                      autocapitalize="off" spellcheck="false" required>
                 </label>
-                <button type="button" class="button button-positive button-block"
-                         ng-disabled="loginForm.$invalid" ng-click="vm.login()">Log in
+                <button type="button" class="button button-energized button-block" ng-disabled="loginForm.$invalid" ng-click="vm.login()">Log in
                 </button>
             </div>
         </form>

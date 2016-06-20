@@ -2,4 +2,5 @@
 
 .controller('ReviewScrumStudentCtrl', function ($scope, $stateParams) {
     $scope.scrumlog = $stateParams.scrumlog;
+    
 })

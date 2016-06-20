@@ -17,6 +17,7 @@
     function login() {
         $scope.show();
         AuthService.login(vm.user).then(function (data) {
+            
             AuthService.isAuthenticated = true;
             AuthService.setUser(data.data.User);
             
@@ -47,14 +48,14 @@
             }
             AuthService.checkToken(data).success(function (data) {
                 if (data.Success === true) {
-                    console.log(data);
+                    
                     AuthService.setUser(data.User);
                     if(data.Userlevel === 'Student'){
                         AuthService.role = USER_ROLES.student;
                         $state.go('tab.submit-scrumlog');
                     }
                     else{
-                        console.log('why?');
+                        
                         AuthService.role = USER_ROLES.teacher;
                         $state.go('tab-teacher.review-scrumlog-teacher');
                     }

@@ -49,6 +49,7 @@ angular.module('app', ['ionic',
 
 .value('api', 'http://localhost/scrumlog-web/api/api.php')
 //.value('api', 'http://scrumlogtest.azurewebsites.net/scrumlog/index.php')
+//.value('api', 'http://php2-pepijn.rhcloud.com/api/api.php')
 .value('tables', [1, 2, 3, 4, 5, 6, 7])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, USER_ROLES) {

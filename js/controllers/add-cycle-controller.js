@@ -115,7 +115,7 @@
                 Cycle_ID: $stateParams.cycle.Cycle_ID,
                 Start_Date: new Date($stateParams.cycle.Start_Date),
                 End_Date: new Date($stateParams.cycle.End_Date),
-                Number: $stateParams.cycle.Number
+                Description: $stateParams.cycle.Description
             }
             $scope.buttonText = 'Wijzigen';
         } else {

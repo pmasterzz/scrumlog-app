@@ -47,7 +47,7 @@
             title: 'Uitloggen',
             template: 'Weet je zeker dat je uit wilt loggen?',
             buttons: [{
-                text: 'Uitloggen', type: 'button-positive', onTap: function (e) {
+                text: 'Uitloggen', type: 'button-energized', onTap: function (e) {
                     $scope.logout();
                 }
             }, { text: 'Annuleren', type: 'button-assertive' }]

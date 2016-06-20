@@ -13,7 +13,8 @@
         getAllCycles: getAllCycles,
         submitComment: submitComment,
         getAllTodos: getAllTodos,
-        completeTodo: completeTodo
+        completeTodo: completeTodo,
+        getLatestScrumlogs: getLatestScrumlogs
     }
     return service;
 
@@ -77,6 +78,10 @@
 
     function getAllTodos(data){
         return $http.get(api + '/api/getAllTodos?teacher_ID=' + data);
+    }
+    
+    function getLatestScrumlogs(id) {
+        return $http.get(api + '/api/getLatestScrumlogs?id=' + id);
     }
     
     function completeTodo(data){

@@ -3,9 +3,9 @@
         <button ng-hide="hasComment" class="button button-icon ion-clipboard" ui-sref="tab-teacher.comment({scrumlog: scrumlog})">
         </button>
     </ion-nav-buttons>
-    <ion-content>
-        <div class="list">
-            <div class="padding">
+    <ion-content class="rainbow">
+        <div class="list <app-container></app-container>">
+            <div class="padding app-input">
                 <h4>
                     Wat heb je de vorige werkdag gedaan?
                     
@@ -14,7 +14,7 @@
                     {{scrumlog.Input_Yesterday}}
                 </p>
             </div>
-            <div class="padding">
+            <div class="padding app-input">
                 <h4>
                     Welke problemen ben je tegengekomen?
                 </h4>
@@ -22,7 +22,7 @@
                     {{scrumlog.Input_Problems}}   
                 </p>
             </div>
-            <div class="padding">
+            <div class="padding app-input">
                 <h4>
                     Wat ga je vandaag doen?
                 </h4>
@@ -30,7 +30,7 @@
                     {{scrumlog.Input_Today}}
                 </p>
             </div>
-            <div class="padding">
+            <div class="padding app-input">
                 <h4>
                     Waar heb je hulp/instructie bij nodig?
                 </h4>
@@ -38,7 +38,7 @@
                     {{scrumlog.Input_Help}}
                 </p>
             </div>
-            <div class="padding">
+            <div class="padding app-input">
                 <h4>
                     Docent:
                 </h4>

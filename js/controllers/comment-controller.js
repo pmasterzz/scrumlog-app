@@ -1,6 +1,6 @@
 angular.module('app.comment', [])
 
-.controller('CommentCtrl', function ($scope, $state, $ionicLoading, $stateParams, ScrumlogService, $ionicHistory) {
+.controller('CommentCtrl', function ($scope, $state, $ionicLoading, $stateParams, ScrumlogService, $ionicHistory, $ionicPopup) {
 
 	//getAllTeachers();
 	$scope.comment = {};

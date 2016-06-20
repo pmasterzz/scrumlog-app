@@ -1,4 +1,4 @@
-<ion-view view-title="To do">
+<ion-view view-title="To do" cache-view="false">
 <ion-content>
     <ion-refresher
      pulling-text="Laad todo's...'"
@@ -19,6 +19,9 @@
             <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(t, $fromIndex, $toIndex)">
             </ion-reorder-button>
         </ion-item>
+        <div class="card" ng-if="publicTodos.length == 0">
+            <div class="item item-text-wrap">Er zijn geen todo's gevonden</div>
+        </div>
         <div class="item item-divider">Privé</div>
         <ion-item ng-repeat="t in todos track by $index "
            ui-sref="tab-teacher.todo-detail({todo: t})" ng-class="{completed: t.Completed == 1}">

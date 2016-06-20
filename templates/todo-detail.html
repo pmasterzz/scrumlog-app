@@ -8,9 +8,17 @@
             <textarea placeholder="Commentaar" ng-model="comment.text">
             </textarea>
         </label>
-        <button class="button button-positive button-block" ui-sref="tab-teacher.comment({comment: comment.text, id: todo.Scrumlog_ID})">
-            Pass to other teacher
+        <label class="item item-input item-select">
+	            <div class="input-label">
+	                Docent
+	            </div>
+	            <select ng-options="teacher.Teacher_ID as teacher.Firstname + ' ' + teacher.Lastname for teacher in teachers"
+	             ng-model="comment.teacher" name="teacher" required>
+	            </select>
+	        </label>
+        <button class="button button-outline button-energized button-block" ng-click="submitComment()">
+            Doorgeven aan andere docent
         </button>
-        <button class="button button-balanced button-block" ng-click="complete(todo)">Voltooien</button>
+        <button class="button button-balanced button-outline button-block" ng-click="complete(todo)">Voltooien</button>
     </ion-content>
 </ion-view>

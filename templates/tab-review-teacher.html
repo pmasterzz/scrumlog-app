@@ -1,12 +1,12 @@
 ﻿<ion-view view-title="Inzien scrumlog">
     <div class="row row-center">
-        <ion-content>
-            <div class="list">
-                <label class="item item-input">
+        <ion-content class="rainbow">
+            <div class="list app-container">
+                <label class="item item-input app-input">
                     <span class="input-label">Datum</span>
                     <input type="date" ng-model="selectedDate">
                 </label>
-                <label class="item item-input item-select">
+                <label class="item item-input item-select app-input">
                     <div class="input-label">
                         Jaar
                     </div>
@@ -19,7 +19,7 @@
                         <option>{{currentYear - 4}}</option>
                     </select>
                 </label>
-                <label class="item item-input item-select">
+                <label class="item item-input item-select app-input">
                     <div class="input-label">
                         Tafel
                     </div>
@@ -34,7 +34,7 @@
                     <select ng-model="filter.cycle_ID" ng-options="cycle.Cycle_ID as cycle.Start_Date +' t/m ' + cycle.End_Date for cycle in cycles">
                     </select>
                 </label>-->
-                <button class="button button-outline button-block button-positive"
+                <button class="button button-block button-energized"
                         ng-click="getScrumlogTeacher(filter, selectedDate)">
                     Bekijk scrumlog
                 </button>
